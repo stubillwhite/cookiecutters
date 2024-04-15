@@ -1,0 +1,7 @@
+{
+  "project_name": "white-test-clean",
+  "package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
+  "friendly_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
+  "author": "John Doe",
+  "email": "johndoe@mail.com"
+}
