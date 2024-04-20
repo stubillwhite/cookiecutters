@@ -8,7 +8,7 @@ SHELL=/usr/local/bin/zsh
 .SHELLFLAGS=-i
 
 PYTHON=python3
-PIP=pipj
+PIP=pip
 
 PROJECT_NAME={{cookiecutter.package_name}}
 
@@ -36,7 +36,8 @@ clean: ## Remove all artefacts
 .PHONY: clean-all
 clean-all: clean ## Remove all artefacts and dependencies
 	@echo 'Cleaning dependencies'
-	@rm .make-sentinel.deps
+	@rm -rf dist/ htmlcov/
+	@rm -f .make-sentinel.deps
 	@poetry env remove --all
 
 # Dependencies
@@ -64,8 +65,11 @@ test: deps ## Run the tests
 	@echo
 
 check: deps ## Check the code
-	@echo 'Running static checks'
+	@echo 'Running linter'
 	@poetry run ruff check
+	@echo
+	@echo 'Running static type checks'
+	@poetry run mypy src tests
 	@echo
 
 fix: format deps ## Fix formatting and minor style issues
