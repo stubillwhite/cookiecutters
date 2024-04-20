@@ -42,41 +42,18 @@ omit = ["__init__.py", "__main__.py"]
 ########################################
 
 [tool.ruff]
-src = ['src', 'tests']
+src = ['src']
+extend-exclude = ['tests']
 line-length = 120
-lint.select = [
-	#'A',	# No flake8 built-in checks
-	#'ARG',
-	#'B',
-	#'B9',
-	#'BLE',
-	#'C',
-	#'C4',
-	#'D',
-	#'DTZ',
-	#'E',
-	#'F',
-	#'I',
-	#'N',
-	#'PIE',
-	#'PT',
-	#'PTH',
-	#'Q',
-	#'RET',
-	#'RUF',
-	#'S',
-	#'SIM',
-	#'SLF',
-	#'T10',
-	#'TCH',
-	#'UP',
-	#'W',
-]
 
-[tool.ruff.lint.per-file-ignores]
-"tests/*" = [
-    'S', # No security checks
-    'D', # No doc checks
+[tool.ruff.lint]
+extend-select = [
+    "ANN",      # flake8-annotations for type annotations
+]
+extend-ignore = [
+    "ANN101",   # Missing type annotation for self in method
+    "ANN102",   # Missing type annotation for cls in classmethod
+    "ANN204",   # Missing return type annotation for special method
 ]
 
 [tool.ruff.lint.pydocstyle]
