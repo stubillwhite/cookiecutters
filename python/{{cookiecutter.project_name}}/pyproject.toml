@@ -34,9 +34,8 @@ source = ["src", "*/site-packages"]
 [tool.coverage.run]
 branch = true
 source = ["{{cookiecutter.package_name}}"]
+omit = ["__init__.py", "__main__.py"]
 
-[tool.coverage.report]
-show_missing = true
 
 ########################################
 # Linting
