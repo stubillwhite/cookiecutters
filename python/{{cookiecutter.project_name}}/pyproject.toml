@@ -36,6 +36,12 @@ branch = true
 source = ["{{cookiecutter.package_name}}"]
 omit = ["__init__.py", "__main__.py"]
 
+########################################
+# Formatting
+########################################
+
+[tool.black]
+line-length = 120
 
 ########################################
 # Linting
