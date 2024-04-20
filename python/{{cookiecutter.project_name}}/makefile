@@ -29,10 +29,14 @@ help:
 # Clean
 # ======================================
 
+.PHONY: stop
+stop: ## Stop any running processes
+	@echo 'Stopping processes'
+	@poetry run dmypy stop || true
+
 .PHONY: clean
-clean: ## Remove all artefacts
+clean: stop ## Remove all artefacts
 	@echo 'Cleaning application'
-	@poetry run dmypy stop
 
 .PHONY: clean-all
 clean-all: clean ## Remove all artefacts and dependencies
