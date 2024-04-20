@@ -32,6 +32,7 @@ help:
 .PHONY: clean
 clean: ## Remove all artefacts
 	@echo 'Cleaning application'
+	@poetry run dmypy stop
 
 .PHONY: clean-all
 clean-all: clean ## Remove all artefacts and dependencies
@@ -69,7 +70,7 @@ check: deps ## Check the code
 	@poetry run ruff check
 	@echo
 	@echo 'Running static type checks'
-	@poetry run mypy src tests
+	@poetry run dmypy run -- src tests
 	@echo
 
 fix: format deps ## Fix formatting and minor style issues
