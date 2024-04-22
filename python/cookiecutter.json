@@ -1,5 +1,5 @@
 {
-  "project_name": "white-test-clean",
+  "project_name": "my-python-project",
   "package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
   "friendly_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
   "author": "John Doe",
