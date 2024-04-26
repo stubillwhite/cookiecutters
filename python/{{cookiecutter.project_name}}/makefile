@@ -88,3 +88,5 @@ format: deps ## Format the code
 	@echo
 
 build: format test check ## Build the code
+	@echo 'Building artefacts'
+	@poetry build
