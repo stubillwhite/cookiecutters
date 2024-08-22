@@ -53,7 +53,18 @@ clean-all: clean ## Remove all artefacts and dependencies
 	@poetry install
 	@touch .make-sentinel.deps
 
+deps-scan: .make-sentinel.deps
+	@echo 'Scanning dependencies for security vulnerabilities'
+	@poetry run pip-audit -r <(poetry export -f requirements.txt --with dev)
+	#@poetry run safety auth login --headless
+	#@poetry run safety scan
+
 deps: .make-sentinel.deps ## Install dependencies
+
+.PHONY: deps-update
+deps-update: clean-all ## Update dependency versions
+	@echo 'Updating dependencies'
+	@poetry update
 
 # Running
 # ======================================
