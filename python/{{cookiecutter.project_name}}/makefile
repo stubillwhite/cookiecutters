@@ -14,8 +14,10 @@ PROJECT_NAME={{cookiecutter.package_name}}
 
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
+# Proxy certificates
+# REQUESTS_CA_BUNDLE is required for dependency scanning but breaks Azure
+# integration so set that only in targets that require it
 export SSL_CERT_FILE=$(HOME)/Dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
-export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE)
 
 # Targets
 # ==============================================================================
@@ -58,14 +60,16 @@ clean-all: clean ## Remove all artefacts and dependencies
 
 deps-scan: .make-sentinel.deps
 	@echo 'Scanning dependencies for security vulnerabilities'
-	@poetry run pip-audit -r <(poetry export -f requirements.txt --with dev)
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+		&& poetry run pip-audit -r <(poetry export -f requirements.txt --with dev)
 
 deps: .make-sentinel.deps ## Install dependencies
 
 .PHONY: deps-update
 deps-update: clean-all ## Update dependency versions
 	@echo 'Updating dependencies'
-	@poetry update
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+		&& poetry update
 
 # Running
 # ======================================
