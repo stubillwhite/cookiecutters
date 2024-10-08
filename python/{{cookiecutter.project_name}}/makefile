@@ -55,7 +55,8 @@ clean-all: clean ## Remove all artefacts and dependencies
 
 .make-sentinel.deps: pyproject.toml
 	@echo 'Fetching dependencies'
-	@poetry install
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+		&& poetry install
 	@touch .make-sentinel.deps
 
 deps-scan: .make-sentinel.deps
