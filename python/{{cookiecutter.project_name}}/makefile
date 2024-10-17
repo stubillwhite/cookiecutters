@@ -12,6 +12,8 @@ PIP=pip
 
 PROJECT_NAME={{cookiecutter.package_name}}
 
+SENTINEL_FILE_DEPS=.make-sentinel.deps
+
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # Proxy certificates
@@ -57,20 +59,29 @@ clean-all: clean ## Remove all artefacts and dependencies
 	@echo 'Fetching dependencies'
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry install
-	@touch .make-sentinel.deps
+	@touch $(SENTINEL_FILE_DEPS)
 
-deps-scan: .make-sentinel.deps
+deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
+
+.PHONY: deps-scan
+deps-scan: deps
 	@echo 'Scanning dependencies for security vulnerabilities'
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry run pip-audit -r <(poetry export -f requirements.txt --with dev)
-
-deps: .make-sentinel.deps ## Install dependencies
 
 .PHONY: deps-update
 deps-update: clean-all ## Update dependency versions
 	@echo 'Updating dependencies'
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry update
+
+.PHONY: deps-add ## Add a dependency (use DEP=foo to specify the dependency)
+deps-add:
+	@poetry add $(DEP)
+
+.PHONY: deps-remove ## Rewmove a dependency (use DEP=foo to specify the dependency)
+deps-remove:
+	@poetry remove $(DEP)
 
 # Running
 # ======================================
