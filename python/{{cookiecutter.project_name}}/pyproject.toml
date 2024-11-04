@@ -44,6 +44,9 @@ omit = ["__init__.py", "__main__.py"]
 [tool.black]
 line-length = 120
 
+[tool.isort]
+profile = "black"
+
 ########################################
 # Linting
 ########################################

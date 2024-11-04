@@ -77,11 +77,13 @@ deps-update: clean-all ## Update dependency versions
 
 .PHONY: deps-add ## Add a dependency (use DEP=foo to specify the dependency)
 deps-add:
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 	@poetry add $(DEP)
 
 .PHONY: deps-remove ## Rewmove a dependency (use DEP=foo to specify the dependency)
 deps-remove:
-	@poetry remove $(DEP)
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+		&& poetry remove $(DEP)
 
 # Running
 # ======================================
@@ -112,6 +114,7 @@ fix: format deps ## Fix formatting and minor style issues
 
 format: deps ## Format the code
 	@echo 'Formatting code'
+	@poetry run isort src tests
 	@poetry run black src tests
 	@echo
 
