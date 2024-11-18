@@ -4,7 +4,7 @@
 COLOR_BLUE=\033[0;34m
 COLOR_NONE=\033[0m
 
-SHELL=/usr/local/bin/zsh
+SHELL=zsh
 .SHELLFLAGS=-i
 
 PYTHON=python3
