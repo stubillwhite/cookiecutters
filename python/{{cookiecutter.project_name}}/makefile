@@ -19,7 +19,7 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 # Proxy certificates
 # REQUESTS_CA_BUNDLE is required for dependency scanning but breaks Azure
 # integration so set that only in targets that require it
-export SSL_CERT_FILE=$(HOME)/Dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
+export SSL_CERT_FILE=$(HOME)/dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
 
 # Targets
 # ==============================================================================
@@ -78,7 +78,7 @@ deps-update: clean-all ## Update dependency versions
 .PHONY: deps-add ## Add a dependency (use DEP=foo to specify the dependency)
 deps-add:
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-	@poetry add $(DEP)
+		&& poetry add $(DEP)
 
 .PHONY: deps-remove ## Rewmove a dependency (use DEP=foo to specify the dependency)
 deps-remove:
