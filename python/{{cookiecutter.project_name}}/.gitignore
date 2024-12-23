@@ -7,3 +7,4 @@ htmlcov/
 .coverage
 .dmypy.json
 .make-sentinel.*
+.DS_Store
