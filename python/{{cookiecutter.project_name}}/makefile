@@ -72,13 +72,13 @@ deps-update: clean-all ## Update dependency versions
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry update
 
-.PHONY: deps-add ## Add a dependency (use DEP=foo to specify the dependency)
-deps-add:
+.PHONY: deps-add
+deps-add: ## Add a dependency (use DEP=foo to specify the dependency)
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry add $(DEP)
 
-.PHONY: deps-remove ## Rewmove a dependency (use DEP=foo to specify the dependency)
-deps-remove:
+.PHONY: deps-remove
+deps-remove: ## Remove a dependency (use DEP=foo to specify the dependency)
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry remove $(DEP)
 
