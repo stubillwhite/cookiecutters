@@ -46,17 +46,17 @@ clean: stop ## Remove all artefacts
 clean-all: clean ## Remove all artefacts and dependencies
 	@echo 'Cleaning dependencies'
 	@rm -rf dist/ htmlcov/
-	@rm -f .make-sentinel.deps
+	@rm -f $(SENTINEL_FILE_DEPS)
 	@poetry env remove --all
 
 # Dependencies
 # ======================================
 
-.make-sentinel.deps: pyproject.toml
+$(SENTINEL_FILE_DEPS): pyproject.toml
 	@echo 'Fetching dependencies'
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry install
-	@touch $(SENTINEL_FILE_DEPS)
+	@touch .make-sentinel.deps
 
 deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
 
