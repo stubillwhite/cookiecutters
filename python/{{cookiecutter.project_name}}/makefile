@@ -60,6 +60,12 @@ $(SENTINEL_FILE_DEPS): pyproject.toml
 
 deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
 
+.PHONY: deps-lock
+deps-lock:
+	@echo 'Locking poetry file'
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+		&& poetry lock
+
 .PHONY: deps-scan
 deps-scan: deps
 	@echo 'Scanning dependencies for security vulnerabilities'
