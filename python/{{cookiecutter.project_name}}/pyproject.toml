@@ -12,6 +12,7 @@ run-app = "{{cookiecutter.package_name}}.__main__:main"
 python = "^3.12"
 pip-audit = "^2.7.3"
 isort = "^5.13.2"
+monkeytype = "^23.3.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.1.1"
