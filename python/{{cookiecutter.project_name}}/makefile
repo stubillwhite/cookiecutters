@@ -11,6 +11,8 @@ PROJECT_NAME={{cookiecutter.package_name}}
 
 SENTINEL_FILE_DEPS=.make-sentinel.deps
 
+SHELL=zsh
+
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # Proxy certificates
