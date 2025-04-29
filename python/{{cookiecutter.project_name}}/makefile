@@ -16,8 +16,6 @@ SHELL=zsh
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # Proxy certificates
-# REQUESTS_CA_BUNDLE is required for dependency scanning but breaks Azure
-# integration so set that only in targets that require it
 export SSL_CERT_FILE=$(HOME)/dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
 
 # Targets
@@ -56,8 +54,7 @@ clean-all: clean ## Remove all artefacts and dependencies
 
 $(SENTINEL_FILE_DEPS): pyproject.toml
 	@echo 'Fetching dependencies'
-	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry install
+	@poetry install
 	@touch .make-sentinel.deps
 
 deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
@@ -65,30 +62,25 @@ deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
 .PHONY: deps-lock
 deps-lock:
 	@echo 'Locking poetry file'
-	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry lock
+	@poetry lock
 
 .PHONY: deps-scan
 deps-scan: deps
 	@echo 'Scanning dependencies for security vulnerabilities'
-	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry run pip-audit -r <(poetry export -f requirements.txt --with dev)
+	@poetry run pip-audit -r <(poetry export -f requirements.txt --with dev)
 
 .PHONY: deps-update
 deps-update: clean-all ## Update dependency versions
 	@echo 'Updating dependencies'
-	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry update
+	@poetry update
 
 .PHONY: deps-add
 deps-add: ## Add a dependency (use DEP=foo to specify the dependency)
-	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry add $(DEP)
+	@poetry add $(DEP)
 
 .PHONY: deps-remove
 deps-remove: ## Remove a dependency (use DEP=foo to specify the dependency)
-	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry remove $(DEP)
+	@poetry remove $(DEP)
 
 # Running
 # ======================================
