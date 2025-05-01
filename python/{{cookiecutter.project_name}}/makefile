@@ -4,8 +4,7 @@
 COLOR_BLUE=\033[0;34m
 COLOR_NONE=\033[0m
 
-PYTHON=python3
-PIP=pip
+PYTHON_VERION=python3.13
 
 PROJECT_NAME={{cookiecutter.package_name}}
 
@@ -53,6 +52,8 @@ clean-all: clean ## Remove all artefacts and dependencies
 # ======================================
 
 $(SENTINEL_FILE_DEPS): pyproject.toml
+	@echo 'Setting Python version to $(PYTHON_VERION)'
+	@poetry env use $(PYTHON_VERION) 
 	@echo 'Fetching dependencies'
 	@poetry install
 	@touch .make-sentinel.deps
@@ -87,7 +88,8 @@ deps-remove: ## Remove a dependency (use DEP=foo to specify the dependency)
 
 run: deps ## Run the app
 	@echo 'Running application'
-	@poetry run run-app
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+		&& poetry run run-app
 	@echo
 
 test: deps ## Run the tests
