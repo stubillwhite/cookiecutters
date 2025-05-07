@@ -1,7 +1,13 @@
 {
-  "project_name": "my-python-project",
-  "package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
-  "friendly_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
-  "author": "John Doe",
-  "email": "johndoe@mail.com"
+    "project_name": "my-python-project",
+    "package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
+    "friendly_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
+    "author": "John Doe",
+    "email": "johndoe@mail.com",
+    "include_artifactory": "yes",
+    "include_zscaler": "yes",
+    "_jinja2_env_vars": {
+        "lstrip_blocks": true,
+        "trim_blocks": true
+    }
 }

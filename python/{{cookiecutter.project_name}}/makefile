@@ -47,6 +47,7 @@ clean-all: clean ## Remove all artefacts and dependencies
 	@rm -rf dist/ htmlcov/
 	@rm -f $(SENTINEL_FILE_DEPS)
 	@poetry env remove --all
+	@poetry env list --full-path | cut -f 1 -d ' ' | xargs rm -r
 
 # Dependencies
 # ======================================
@@ -88,8 +89,12 @@ deps-remove: ## Remove a dependency (use DEP=foo to specify the dependency)
 
 run: deps ## Run the app
 	@echo 'Running application'
+{% if cookiecutter.include_zscaler == 'yes' %}
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& poetry run run-app
+{% else %}
+	@poetry run run-app
+{% endif %}
 	@echo
 
 test: deps ## Run the tests
