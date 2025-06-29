@@ -17,6 +17,7 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 # Proxy certificates
 export SSL_CERT_FILE=$(HOME)/dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
 
+TEST_FILE=tests/{{cookiecutter.package_name}}/test_console.py
 # Targets
 # ==============================================================================
 
@@ -96,6 +97,11 @@ run: deps ## Run the app
 	@poetry run run-app
 {% endif %}
 	@echo
+
+run-test-with-coverage: deps
+	@echo 'Running test $(TEST_FILE)'
+	@poetry run coverage run --source=src -m pytest $(TEST_FILE) 
+	@poetry run coverage html
 
 test: deps ## Run the tests
 	@echo 'Running tests'
