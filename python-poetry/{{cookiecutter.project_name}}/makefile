@@ -4,7 +4,7 @@
 COLOR_BLUE=\033[0;34m
 COLOR_NONE=\033[0m
 
-PYTHON_VERION=python3.13
+PYTHON_VERSION=python3.13
 
 PROJECT_NAME={{cookiecutter.package_name}}
 
@@ -14,6 +14,7 @@ SHELL=zsh
 
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
+{% if cookiecutter.include_zscaler == 'yes' %}
 # Proxy certificates
 export SSL_CERT_FILE=$(HOME)/dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
 
@@ -55,8 +56,8 @@ clean-all: clean ## Remove all artefacts and dependencies
 # ======================================
 
 $(SENTINEL_FILE_DEPS): pyproject.toml
-	@echo 'Setting Python version to $(PYTHON_VERION)'
-	@poetry env use $(PYTHON_VERION) 
+	@echo 'Setting Python version to $(PYTHON_VERSION)'
+	@poetry env use $(PYTHON_VERSION) 
 	@echo 'Fetching dependencies'
 	@poetry install
 	@touch .make-sentinel.deps
