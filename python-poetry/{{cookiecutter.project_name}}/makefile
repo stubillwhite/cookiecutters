@@ -18,6 +18,7 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 # Proxy certificates
 export SSL_CERT_FILE=$(HOME)/dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
 
+{% endif %}
 TEST_FILE=tests/{{cookiecutter.package_name}}/test_console.py
 
 # Targets
