@@ -14,7 +14,7 @@ SHELL=zsh
 
 {% if cookiecutter.include_zscaler == 'yes' %}
 # Proxy certificates
-export SSL_CERT_FILE=$(HOME)/dev/certificates/ZscalerRootCertificate-2048-SHA256.crt
+export SSL_CERT_FILE=/etc/ssl/cert.pem
 
 {% endif %}
 TEST_FILE=tests/{{cookiecutter.package_name}}/test_console.py
