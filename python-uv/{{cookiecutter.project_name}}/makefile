@@ -92,7 +92,7 @@ run: deps ## Run the app
 	@echo 'Running application'
 {% if cookiecutter.include_zscaler == 'yes' %}
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
-		&& poetry run run-app
+		&& uv run run-app
 {% else %}
 	@uv run run-app
 {% endif %}
