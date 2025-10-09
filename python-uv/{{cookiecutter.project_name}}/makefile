@@ -10,8 +10,6 @@ PROJECT_NAME={{cookiecutter.package_name}}
 
 SENTINEL_FILE_DEPS=.make-sentinel.deps
 
-SHELL=zsh
-
 {% if cookiecutter.include_zscaler == 'yes' %}
 # Proxy certificates
 export SSL_CERT_FILE=/etc/ssl/cert.pem
