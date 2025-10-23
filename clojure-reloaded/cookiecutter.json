@@ -1,6 +1,6 @@
 {
     "project_name": "my-clojure-projects/my-project",
-    "main_ns":      "{{ cookiecutter.project_name.replace('_', '-').replace('/', '.') }}",
+    "main_ns":      "{{ cookiecutter.project_name.replace('-', '_').replace('/', '.') }}",
     "_jinja2_env_vars": {
         "lstrip_blocks": true,
         "trim_blocks": true
