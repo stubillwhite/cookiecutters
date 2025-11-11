@@ -45,6 +45,7 @@ clean: stop ## Remove all artefacts
 clean-all: clean ## Remove all artefacts and dependencies
 	@echo 'Cleaning dependencies'
 	@rm -rf dist/ htmlcov/
+	@rm -f .python-version
 	@rm -f $(SENTINEL_FILE_DEPS)
 	@rm -rf .venv
 
