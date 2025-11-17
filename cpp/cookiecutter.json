@@ -1,0 +1,8 @@
+{
+    "project_name": "my-project",
+    "main_module_name": "app",
+    "_jinja2_env_vars": {
+        "lstrip_blocks": true,
+        "trim_blocks": true
+    }
+}
