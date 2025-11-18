@@ -8,7 +8,7 @@ COLOR_BLUE=\033[0;34m
 COLOR_NONE=\033[0m
 
 {% endraw %}
-EXECUTABLE=./build/{{cookiecutter.main_module_name}}/-sandbox
+EXECUTABLE=./build/apps/{{cookiecutter.project_name}}-app
 {% raw -%}
 
 # Targets                                                                   {{{1
@@ -30,7 +30,8 @@ help:
 clean: ## Remove all artefacts
 	@echo 'Cleaning application'
 	@rm -rf \
-		./build
+		./build \
+		./docs/html
 
 .PHONY: clean-all
 clean-all: clean ## Remove all artefacts and dependencies
@@ -39,15 +40,30 @@ clean-all: clean ## Remove all artefacts and dependencies
 # Build                             {{{2
 # ======================================
 
-run: ## Build and run
-	@echo 'Running application'
+.PHONY: build
+build: 
+	@echo 'Building application'
 	@mkdir -p build 
 	@cd build \
 		&& cmake -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=cmake/conan_provider.cmake .. \
 		&& cmake --build .
+
+.PHONY: run
+run: build ## Build and run
+	@echo 'Running application'
 	@$(EXECUTABLE)
 
-test:
+.PHONY: test
+test: build
 	@cd build \
 		&& ctest
+
+# Documentation                     {{{2
+# ======================================
+
+.PHONY: docs
+docs: build ## Generate documentation with Doxygen
+	@echo 'Generating documentation'
+	@cd build \
+		&& cmake --build . --target docs		
 {% endraw %}
