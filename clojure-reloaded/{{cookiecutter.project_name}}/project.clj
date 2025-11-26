@@ -9,13 +9,31 @@
 
   :repl-options {:port 4555}
 
-  :plugins []
+  :plugins [[lein-eftest "0.5.9"]]
   
-  :dependencies [[org.clojure/tools.nrepl "0.2.13"]
-                 [org.clojure/clojure "1.11.1"]
-                 [com.taoensso/timbre "6.3.1"]
-                 [org.clojure/tools.trace "0.7.11"]
-                 [com.rpl/specter "1.1.4"]]
+  :eftest {:multithread? :vars
+           :thread-count 4
+           :test-warn-time 250}
   
+  :dependencies [;; Core
+                 [org.clojure/tools.nrepl "0.2.13"]
+                 [org.clojure/clojure "1.12.0"]
+                 [org.clojure/tools.trace "0.8.0"]
+
+                 ;; Spec helpers
+                 [expound "0.9.0"]
+
+                 ;; Logging
+                 [com.taoensso/timbre "6.6.1"]
+  
+                 ;; Spec helpers
+                 [expound "0.9.0"]
+
+                 ;; DI
+                 [mount "0.1.20"]
+
+                 ;; Profiling
+                 [com.taoensso/tufte "2.6.3"]]
+
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]]
                    :source-paths ["dev"]}})
