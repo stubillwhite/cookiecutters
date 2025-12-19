@@ -35,7 +35,6 @@ help:
 .PHONY: stop
 stop: ## Stop any running processes
 	@echo 'Stopping processes'
-	@uv run dmypy stop || true
 
 .PHONY: clean
 clean: stop ## Remove all artefacts
@@ -114,7 +113,7 @@ check: deps ## Check the code
 	@uv run ruff check
 	@echo
 	@echo 'Running static type checks'
-	@uv run dmypy run -- src tests
+	@ty check
 	@echo
 
 fix: format deps ## Fix formatting and minor style issues
