@@ -55,7 +55,7 @@ $(SENTINEL_FILE_DEPS): pyproject.toml
 	@echo 'Setting Python version to $(PYTHON_VERSION)'
 	@uv python pin $(PYTHON_VERSION)
 	@echo 'Fetching dependencies'
-	export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
+	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& uv sync --all-extras
 	@touch .make-sentinel.deps
 

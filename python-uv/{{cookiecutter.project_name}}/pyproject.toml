@@ -73,6 +73,9 @@ extend-select = [
     "ANN",      # flake8-annotations for type annotations
 ]
 extend-ignore = [
+    "ANN101",   # Missing type annotation for self in method
+    "ANN102",   # Missing type annotation for cls in classmethod
+    "ANN003",   # Missing type annotation for `**kwargs`
     "ANN204",   # Missing return type annotation for special method
 ]
 
