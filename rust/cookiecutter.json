@@ -1,0 +1,8 @@
+{
+    "project_name": "my-rust-project",
+    "package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
+    "_jinja2_env_vars": {
+        "lstrip_blocks": true,
+        "trim_blocks": true
+    }
+}
