@@ -17,3 +17,6 @@ Project types:
 
 - C/C++
     - `cpp` - Basic C++ project with Conan and CTest
+
+- Rust
+    - `rust` - Basic Rust project
