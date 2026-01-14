@@ -4,8 +4,8 @@
     "friendly_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
     "author": "John Doe",
     "email": "johndoe@mail.com",
-    "include_artifactory": "yes",
-    "include_zscaler": "yes",
+    "include_artifactory": "no",
+    "include_zscaler": "no",
     "_jinja2_env_vars": {
         "lstrip_blocks": true,
         "trim_blocks": true
