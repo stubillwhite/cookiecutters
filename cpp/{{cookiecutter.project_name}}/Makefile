@@ -48,7 +48,7 @@ build:
 	@echo 'Building application'
 	@mkdir -p build 
 	@cd build \
-		&& cmake -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=cmake/conan_provider.cmake .. \
+		&& cmake -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=cmake/conan_provider.cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .. \
 		&& cmake --build .
 
 .PHONY: run

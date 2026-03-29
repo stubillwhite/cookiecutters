@@ -1,47 +1,43 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "label": "build",
             "type": "shell",
-            "command": "make",
-            "args": ["build"],
+            "command": "make build",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"],
-            "detail": "Build the project using make"
-        },
-        {
-            "label": "run",
-            "type": "shell",
-            "command": "make",
-            "args": ["run"],
-            "dependsOn": ["build"],
-            "problemMatcher": [],
-            "detail": "Build and run the application"
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
         },
         {
             "label": "test",
             "type": "shell",
-            "command": "make",
-            "args": ["test"],
-            "dependsOn": ["build"],
+            "command": "make test",
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
-            "problemMatcher": [],
-            "detail": "Run all tests"
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
         },
         {
             "label": "clean",
             "type": "shell",
-            "command": "make",
-            "args": ["clean"],
-            "problemMatcher": [],
-            "detail": "Clean build artifacts"
+            "command": "make clean",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
