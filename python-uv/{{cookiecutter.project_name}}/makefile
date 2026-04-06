@@ -57,7 +57,7 @@ $(SENTINEL_FILE_DEPS): pyproject.toml
 	@echo 'Fetching dependencies'
 	@export REQUESTS_CA_BUNDLE=$(SSL_CERT_FILE) \
 		&& uv sync --all-extras
-	@touch .make-sentinel.deps
+	@touch $(SENTINEL_FILE_DEPS)
 
 deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
 

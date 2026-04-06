@@ -59,7 +59,7 @@ $(SENTINEL_FILE_DEPS): pyproject.toml
 	@poetry env use $(PYTHON_VERSION) 
 	@echo 'Fetching dependencies'
 	@poetry install
-	@touch .make-sentinel.deps
+	@touch $(SENTINEL_FILE_DEPS)
 
 deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
 
