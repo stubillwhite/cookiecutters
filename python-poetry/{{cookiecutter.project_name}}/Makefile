@@ -58,7 +58,7 @@ $(SENTINEL_FILE_DEPS): pyproject.toml
 	@echo 'Setting Python version to $(PYTHON_VERSION)'
 	@poetry env use $(PYTHON_VERSION) 
 	@echo 'Fetching dependencies'
-	@poetry install
+	@poetry install --with dev
 	@touch $(SENTINEL_FILE_DEPS)
 
 deps: $(SENTINEL_FILE_DEPS) ## Install dependencies
