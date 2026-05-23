@@ -23,6 +23,9 @@ ruff = "^0.3.5"
 black = "^24.3.0"
 mypy = "^1.9.0"
 
+[solver]
+min-release-age = 7
+
 {% if cookiecutter.include_artifactory == 'yes' %}
 [[tool.poetry.source]]
 name = "pypi-default-virtual"

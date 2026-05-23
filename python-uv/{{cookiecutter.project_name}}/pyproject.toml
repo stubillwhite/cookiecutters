@@ -26,6 +26,9 @@ dev = [
 [project.scripts]
 run-app = "{{cookiecutter.package_name}}.__main__:main"
 
+[tool.uv]
+exclude-newer = "1 week"
+
 {% if cookiecutter.include_artifactory == 'yes' %}
 [[tool.uv.index]]
 name = "pypi-default-virtual"
